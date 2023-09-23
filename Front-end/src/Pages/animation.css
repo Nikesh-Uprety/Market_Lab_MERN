@@ -1,0 +1,30 @@
+@keyframes fall {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    50% {
+        transform: translateY(10%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.animation-fall {
+    display: inline-block;
+    position: relative;
+    animation: fade 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+.animation-fall b {
+    display: block;
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.animation-fall b.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
