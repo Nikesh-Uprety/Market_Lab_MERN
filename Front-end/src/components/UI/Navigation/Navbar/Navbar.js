@@ -4,11 +4,17 @@ import { Link } from "react-router-dom";
 import { NavLink , useHistory} from 'react-router-dom';
 import AuthServices from "../../../../ApiServices/auth.service";
 import { GoogleLogout } from "react-google-login";
-import './Navbar.css'
+import { useLocation } from "react-router-dom";
+
+
+
 
 const Navbar = () => {
 
   const [isNavSticky, setIsNavSticky] = useState(false);
+ 
+
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
@@ -248,8 +254,7 @@ const Navbar = () => {
         left: "0"
 
       }}>
-        <nav className={`navbar navbar-expand-lg navfont ${isNavSticky ? 'sticky' : ''}`}>
-          {/* <nav className="navbar navbar-expand-lg navfont " style={{}} > */}
+        <nav className={`navbar navbar-expand-lg navfont navbar-blackbg ${isNavSticky ? 'sticky' : ''}  `}>
           <div className="container">
             <a className="navbar-brand d-flex align-items-center" href="#">
               <img src="/images/masterlogo.png" className="logo" alt="MarketLab" />

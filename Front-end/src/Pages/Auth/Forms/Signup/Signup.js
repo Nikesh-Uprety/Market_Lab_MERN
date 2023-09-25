@@ -268,15 +268,13 @@ inputBlurHandler = (event,inputIdentifier)=> {
             AuthService.register(formData) 
             .then(response => {console.log('Response:', response)
 
-
                 localStorage.setItem('token', response.data.token) 
                 localStorage.setItem("valid",true);
                 localStorage.setItem("type","success");
                 localStorage.setItem("msg",response.data.message);
                    
                 this.setState({ redirect: "/signup/otp" });
-    
-                 
+ 
 
                 })
                   //  alert("Something went wrong")})

@@ -206,7 +206,8 @@ class Otp extends Component {
             </div>
         );
 
-        return (  <Layout>
+        return (  
+        <Layout>
             {alertContent}
       
             <div className="SideContent">

@@ -62,11 +62,4 @@
 ## Real Time Live Group Classes using socket.io and Optimized with redis for caching messages == Currently Not Available
 
 
-
 ---
-
-
-
-
-
-

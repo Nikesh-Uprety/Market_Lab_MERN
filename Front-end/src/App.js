@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch, Redirect} from 'react-router-dom';
 import {BrowserRouter} from 'react-router-dom';
-import Login from './Pages/Auth/Forms/Login/Login';
 import Signup from './Pages/Auth/Forms/Signup/Signup';
 import EmailVerify from './Pages/Auth/Forms/ForgotPassword/EmailVerify';
 import ForgotPasswordotp from './Pages/Auth/Forms/ForgotPassword/ForgotPassOtp';
@@ -20,14 +19,14 @@ import Chat from './Pages/Chat/Chat';
 
 // import "./App.css"
 
-import Premiumcourses from './Pages/premiumcourses';
+
+import Premiumcourse from './Pages/premiumcourses';
 import Webinar from './Pages/webinear';
 
 import Home from './Pages/home'
 
 
 class App extends Component {
-
 
 
   render(){
@@ -38,9 +37,8 @@ class App extends Component {
     
         <Switch>
 
-        <Route path="/signup" exact component={Signup}/>
-        <Route path="/login" component={Login}/>
-          {/* <Route path="/login" element={<Login />} /> */}
+        {/* <Route path="/signup" exact component={Signup}/> */}
+        {/* <Route path="/login" component={Login}/> */}
         <Route path="/signup/otp"  component={Otp}/>
         <Route path="/forgotpasswordemail"  component={ EmailVerify}/>
         <Route path='/ForgotPasswordotp' component={ForgotPasswordotp}/>
@@ -70,14 +68,12 @@ class App extends Component {
 
         <Route path="/chat" component={Chat}/>
 
-          <Route path="/" component={Home} />
-          <Route path="/premium" component={Premiumcourses}   />
-          <Route path="/webinar" component={Webinar}  />
-
-        {/* <Redirect to="/home/all"/> */}
+        <Route path="/index" component={Home} />
+        <Route path="/premium" component={Premiumcourse}/>
+        <Route path="/webinar" component={Webinar}/>
 
           
-        <Redirect to="/"/>
+        <Redirect to="/index"/>
 
 
        </Switch>
@@ -86,6 +82,7 @@ class App extends Component {
 
 
   );
+
 }}
 
 export default App;

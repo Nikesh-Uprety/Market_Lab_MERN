@@ -4,11 +4,18 @@ import { Link } from "react-router-dom";
 import { NavLink , useHistory} from 'react-router-dom';
 import AuthServices from "../../ApiServices/auth.service";
 import { GoogleLogout } from "react-google-login";
+import { useLocation } from "react-router-dom";
+import '../Layout/sidebar'
 
 
 const Navbar = () => {
 
     const [isNavSticky, setIsNavSticky] = useState(false);
+
+    const location = useLocation();
+    const isDefaultBackground = ["/", "/webinar", "/premium"].includes(location.pathname);
+    console.log(isDefaultBackground)
+
     useEffect(() => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > 0;
@@ -22,6 +29,9 @@ const Navbar = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+   
+
 
     const [isLogin, setLogin] = useState(false);
     const history = useHistory()
@@ -84,9 +94,6 @@ const Navbar = () => {
 
                     <li className="nav-item">
                         <Link to="/home/all" className="nav-link" >Courses</Link>
-                        {/* <a className="nav-link click-scroll" href="#section_3">
-                                        Courses
-                                    </a> */}
                     </li>
                     <li className="nav-item">
                         <a className="nav-link click-scroll" href="#section_4">
@@ -132,7 +139,6 @@ const Navbar = () => {
             </div>    
             
         </>
-
 
        
     );
@@ -248,13 +254,25 @@ const Navbar = () => {
                 left: "0"
 
             }}>
-                <nav className={`navbar navbar-expand-lg navfont ${isNavSticky ? 'sticky' : ''}`}>
+                <nav className={` navbar navbar-expand-lg navfont ${isNavSticky ? 'sticky' : ''} `} >
                     {/* <nav className="navbar navbar-expand-lg navfont " style={{}} > */}
                     <div className="container">
-                        <a className="navbar-brand d-flex align-items-center" href="#">
+                        <Link to='/index' className="navbar-brand d-flex align-items-center" >
                             <img src="/images/masterlogo.png" className="logo" alt="MarketLab" />
                             <span className="navbar-brand-text"></span>
-                        </a>
+                        </Link>
+
+                        <div className="d-lg-none ms-auto me-3">
+                            <a
+                                className="btn custom-btn custom-border-btn"
+                                data-bs-toggle="offcanvas"
+                                href="#offcanvasExample"
+                                role="button"
+                                aria-controls="offcanvasExample"
+                            >
+                                Member Login
+                            </a>
+                        </div>
                         <div className="searchBox">
                             <input className="searchInput" type="text" name="" placeholder="Search" />
                             <button className="searchButton" href="#">

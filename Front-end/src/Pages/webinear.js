@@ -1,8 +1,7 @@
 import { Footor } from "../components/Layout/footor";
 import Navbar from "../components/Layout/navbar";
 
-
-export const Webinar = () => {
+const Webinar = () => {
     return (
         <>
             <div>

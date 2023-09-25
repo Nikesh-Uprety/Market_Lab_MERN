@@ -1,7 +1,7 @@
 import { Footor } from "../components/Layout/footor";
 import Navbar from "../components/Layout/navbar";
 
-export const Premiumcourses = () => {
+const Premiumcourse = () => {
   return (
     <>
           <div>
@@ -392,4 +392,4 @@ export const Premiumcourses = () => {
     </>
   )
 }
-export default Premiumcourses;
+export default Premiumcourse;

@@ -113,23 +113,27 @@ exports.otpVerification = (req,res,next)=>{
             .then(user=>{
                 user.isverified=true;  
                 
-                const access_token=jwt.sign({email:email,userId:user._id},api_key.accessToken,{
+                const access_token=jwt.sign(
+                    {email:email,userId:user._id},
+                    api_key.accessToken,{
                     algorithm: "HS256",
                     expiresIn:api_key.accessTokenLife
-                });
+                }
+                );
                 const referesh_token = jwt.sign({email:email}, api_key.refereshToken,{
                     algorithm: "HS256",
                     expiresIn:api_key.refereshTokenLife})
                 
-                user.save(result=>{
-                    return res.status(200).json({
-                        message: "otp entered is correct, user successfully added",
-                        access_token:access_token, 
-                        referesh_token:referesh_token,
-                        userId:user._id.toString(),
-                        username:user.name,
-                      });
-                })
+                return user.save()
+                    .then(result => {
+                        return res.status(200).json({
+                            message: "OTP entered is correct, user successfully added",
+                            access_token: access_token,
+                            referesh_token: referesh_token,
+                            userId: user._id.toString(),
+                            username: user.name
+                        });
+                    });
                
 
             })

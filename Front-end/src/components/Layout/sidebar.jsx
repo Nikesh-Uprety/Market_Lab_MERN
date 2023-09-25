@@ -43,6 +43,68 @@ const Sidebar = () => {
         },
     });
 
+    // For Signup State Management !!
+
+    const [sform, setsForm] = useState({
+        name: {
+            placeholder: 'First Name',
+            value: '',
+            valid: false,
+            type: 'text',
+            error: ' ',
+            msg: '',
+            validation: {
+                required: true,
+                minLength: 5,
+                maxLength: 15,
+            },
+            touched: false,
+        },
+        email: {
+            placeholder: 'Email',
+            value: '',
+            valid: false,
+            type: 'email',
+            error: ' ',
+            msg: '',
+            validation: {
+                required: true,
+                regex: /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
+            },
+            touched: false,
+        },
+        password: {
+            placeholder: 'Password',
+            value: '',
+            valid: false,
+            type: 'password',
+            error: ' ',
+            msg: '',
+            validation: {
+                required: true,
+                minLength: 5,
+                maxLength: 18,
+            },
+            touched: false,
+        },
+        confirmPassword: {
+            placeholder: 'Confirm Password',
+            value: '',
+            valid: false,
+            type: 'password',
+            error: ' ',
+            msg: '',
+            validation: {
+                required: true,
+                match: true,
+            },
+            touched: false,
+        },
+    });
+
+
+
+
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState('login');
 
@@ -95,6 +157,16 @@ const Sidebar = () => {
         updatedElement.valid = checkValidity(updatedElement.value, updatedElement.validation);
     };
 
+
+    const signupinputchangeHandler = (event, inputIdentifier) => {
+        const updatedForm = { ...sform };
+        const updatedElement = { ...updatedForm[inputIdentifier] };
+        updatedElement.value = event.target.value;
+        updatedForm[inputIdentifier] = updatedElement;
+        setsForm(updatedForm);
+        updatedElement.valid = checkValidity(updatedElement.value, updatedElement.validation);
+    };
+
     const inputBlurHandler = (event, inputIdentifier) => {
         const updatedForm = { ...form };
         const updatedElement = { ...updatedForm[inputIdentifier] };
@@ -128,9 +200,71 @@ const Sidebar = () => {
         setForm(updatedForm);
     };
 
+
+    const signupinputBlurHandler = (event, inputIdentifier) => {
+        const updatedForm = {
+            ...sform,
+        };
+        const updatedElement = { ...updatedForm[inputIdentifier] };
+
+        if (updatedElement.value.length > 0) updatedElement.touched = true;
+        else {
+            updatedElement.touched = false;
+            updatedElement.error = '';
+        }
+
+        if (inputIdentifier === 'name' && !updatedElement.valid) {
+            updatedElement.error = 'Minimum: 5 and Maximum: 15 characters';
+            updatedElement.msg = '';
+        }
+        if (inputIdentifier === 'name' && updatedElement.valid) {
+            updatedElement.error = '';
+            updatedElement.msg = 'valid';
+        }
+
+        if (inputIdentifier === 'password' && !updatedElement.valid) {
+            updatedElement.error = 'Minimum: 5 and Maximum: 18 characters';
+            updatedElement.msg = '';
+        }
+        if (inputIdentifier === 'password' && updatedElement.valid) {
+            updatedElement.error = '';
+            updatedElement.msg = 'valid';
+        }
+
+        if (inputIdentifier === 'confirmPassword' && !updatedElement.valid) {
+            updatedElement.error = 'Passwords do not match';
+            updatedElement.msg = '';
+        }
+        if (inputIdentifier === 'confirmPassword' && updatedElement.valid) {
+            updatedElement.error = '';
+            updatedElement.msg = 'Password matched!';
+        }
+
+        if (inputIdentifier === 'email' && !updatedElement.valid) {
+            updatedElement.error = 'Invalid format';
+            updatedElement.msg = '';
+        }
+        if (inputIdentifier === 'email' && updatedElement.valid) {
+            updatedElement.error = '';
+            updatedElement.msg = 'valid';
+        }
+
+        updatedForm[inputIdentifier] = updatedElement;
+        setsForm(updatedForm);
+    };
+
     const OverallValidity = () => {
         for (let validate in form) {
             if (!form[validate].valid) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    const signupoverallValidity = () => {
+        for (let validate in sform) {
+            if (!sform[validate].valid) {
                 return false;
             }
         }
@@ -188,6 +322,41 @@ const Sidebar = () => {
         }
     };
 
+    const signupformHandler = (event) => {
+        event.preventDefault();
+        setAlertPressed(true);
+        setTimeout(timeout, 3000);
+
+        if (signupoverallValidity()) {
+            setLoading(true);
+            localStorage.setItem('email', sform['email'].value);
+
+            const formData = {};
+            for (let formElement in sform) {
+                formData[formElement] = sform[formElement].value;
+            }
+
+            AuthService.register(formData)
+                .then((response) => {
+                    console.log('Response:', response);
+
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('valid', true);
+                    localStorage.setItem('type', 'success');
+                    localStorage.setItem('msg', response.data.message);
+
+                    setRedirect('/signup/otp');
+                })
+                .catch((error) => {
+                    console.log(error.response);
+                    setLoading(false);
+                    AlertError(error.response.data.message[0].msg, 'danger');
+                });
+        } else {
+            AlertError('Make sure the Validations are correct', 'warning');
+        }
+    };
+
     const responseGoogle = (response) => {
         console.log(response);
         const form = {};
@@ -240,15 +409,48 @@ const Sidebar = () => {
     }
 
     let LoginSumbitButton = <button className={"form-control"} type={'submit'} Label={"Login"} >Login</button>;
+    let SignupSumbitButton = <button className={"form-control"} type={'submit'} Label={"Signup"} >Signup</button>;
 
     if (loading) {
+
         LoginSumbitButton = <SpinnerButton spinnerclass={"form-control"} />;
+        SignupSumbitButton = <SpinnerButton spinnerclass={"form-control"} />;
+
     }
 
     // Some Logic for login functon and elements
 
-    let inputElement = null;
+    
     var inputclasses = ["InputElement"];
+
+    if (form.email.valid && form.email.touched) {
+
+        const index = inputclasses.indexOf('pop');
+        if (index > -1) inputclasses.splice(index, 1);
+
+        inputclasses.push("Invalid");
+
+    }
+
+    else if (form.email.touched) {
+        const index = inputclasses.indexOf('pop');
+        if (index > -1) inputclasses.splice(index, 1);
+        inputclasses.push("Valid");
+    }
+
+    let error = <p>s</p>;
+
+    if (form.email.msg !== "" && form.email.touched)
+        error = <p className="text-success error-msg">{form.email.msg}</p>;
+
+    if (form.email.error !== "" && form.email.touched)
+        error = <p style={{ color: "red" }} className="  error-msg">{form.email.error}</p>;
+
+    else if (!form.email.touched)
+        error = <p style={{ opacity: "0" }}>a</p>;
+
+
+    // SignUp Functions
 
 
 
@@ -312,6 +514,7 @@ const Sidebar = () => {
                                     onChange={(event) => inputchangeHandler(event, 'email')}
                                     onBlur={(event) => inputBlurHandler(event, 'email')}
                                 />
+                                {/* {error} */}
                             </div>
                             <div className="mb-4">
                                 <label className="form-label mb-2" htmlFor="member-login-password">
@@ -367,10 +570,9 @@ const Sidebar = () => {
 
                     <form
                         className="custom-form member-login-form"
-                        
+                        onSubmit={signupformHandler}
 
-
-                    >
+                        >
                         
                         <div className="member-login-form-body">
                             <div className="mb-4">
@@ -382,9 +584,12 @@ const Sidebar = () => {
                                     // name="member-login-number"
                                     id="member-login-number"
                                     className="form-control"
-                                    placeholder="admin123"
+                                    placeholder="First Name"
                                     required=""
-                                    // value={username}
+
+                                    onChange={(event) => signupinputchangeHandler(event, 'name')}
+                                    onBlur={(event) => signupinputBlurHandler(event, 'name')}
+                                    value={sform.name.value}
                                     // onChange={e => setUsername(e.target.value)}
                                 />
                             </div>
@@ -397,10 +602,16 @@ const Sidebar = () => {
                                     // name="member-login-number"
                                     id="member-login-number"
                                     className="form-control"
-                                    placeholder="user@gmail.com"
+                                    placeholder="Email"
                                     required=""
-                                    // value={emaillogin}
-                                    // onChange={e => setemail(e.target.value)}
+
+                                    onChange={(event) => signupinputchangeHandler(event, 'email')}
+                                    onBlur={(event) => signupinputBlurHandler(event, 'email')}
+                                    value={sform.email.value}
+
+                                 
+
+                                
                                 />
                             </div>
                             <div className="mb-4">
@@ -414,8 +625,12 @@ const Sidebar = () => {
                                     className="form-control"
                                     placeholder="Password"
                                     required=""
-                                    // value={passwordlogin}
-                                    // onChange={e => setpassword(e.target.value)}
+
+                                    onChange={(event) => signupinputchangeHandler(event, 'password')}
+                                    onBlur={(event) => signupinputBlurHandler(event, 'password')}
+
+                                    value={sform.password.value}
+                                    
                                 />
                             </div>
                             <div className="mb-4">
@@ -427,17 +642,19 @@ const Sidebar = () => {
                                     // name="member-login-password"
                                     id="member-login-password"
                                     className="form-control"
-                                    placeholder="Password"
+                                    placeholder="Confirm Password"
                                     required=""
-                                    // value={cpassword}
-                                    // onChange={e => setcpassword(e.target.value)}
+                                    value={sform.confirmPassword.value}
+
+                                    onChange={(event) => signupinputchangeHandler(event, 'confirmPassword')}
+                                    onBlur={(event) => signupinputBlurHandler(event, 'confirmPassword')}
+                                    
                                 />
                             </div>
 
                             <div className="col-lg-5 col-md-7 col-8 mx-auto">
-                                {/* <button type="submit" onClick={createUser} className="form-control">
-                                    Signup
-                                </button> */}
+                                {SignupSumbitButton}
+                            
                             </div>
                             <div className="text-center my-4">
                                 <a href="#">Forgotten password?</a>
