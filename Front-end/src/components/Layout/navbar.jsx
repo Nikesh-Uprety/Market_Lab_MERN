@@ -257,10 +257,9 @@ const Navbar = () => {
                             <Link
                                 to='/home/all'
                                 className="btn custom-btn custom-border-btn"
-                                data-bs-toggle="offcanvas"
                                 
                                 role="button"
-                                aria-controls="offcanvasExample"
+                                
                             >
                                 Courses
                             </Link>
@@ -276,17 +275,6 @@ const Navbar = () => {
                             </a>
                         </div>)}
 
-                        <div className="d-lg-none ms-auto me-3">
-                            <a
-                                className="btn custom-btn custom-border-btn"
-                                data-bs-toggle="offcanvas"
-                                href="#offcanvasExample"
-                                role="button"
-                                aria-controls="offcanvasExample"
-                            >
-                                Member Login
-                            </a>
-                        </div>
                         <div className="searchBox">
                             <input className="searchInput" type="text" name="" placeholder="Search" />
                             <button className="searchButton" href="#">
@@ -310,7 +298,7 @@ const Navbar = () => {
 
                         {!isLogin && Logout}
                         {isLogin && loggedIn}
-                        {/* {loggedIn} */}
+                        
                         
                     </div>
                 </nav>
