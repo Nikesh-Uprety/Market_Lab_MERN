@@ -21,8 +21,8 @@ const Categories =(props)=>{
                     <NavLink to='/home/Forex' activeClassName="active-category" >Forex Fundamentals</NavLink>
                     <NavLink to='/home/ForexFunded' activeClassName="active-category">Road to Forex Funded Account	</NavLink>
                     <NavLink to='/home/Commodity' activeClassName="active-category">Commodity Elite Strategies</NavLink>
-                    <NavLink to='/home/CommodityElite' className="recommended" 
-                  activeClassName="active-category">Recommended!</NavLink>
+                    {/* <NavLink to='/home/CommodityElite' className="recommended" 
+                  activeClassName="active-category">Recommended!</NavLink> */}
                 
             </div>
 

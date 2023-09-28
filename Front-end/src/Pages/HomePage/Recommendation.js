@@ -8,6 +8,7 @@ const Recommendation =(props)=>{
 
 
     return(
+        
 
         <div className="Interest-banner">
             <img src={InterestBanner} alt="interestbanner"/>

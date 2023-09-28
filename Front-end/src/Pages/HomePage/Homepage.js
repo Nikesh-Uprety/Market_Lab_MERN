@@ -144,7 +144,7 @@ class Homepage extends Component {
                                     {data}
                                 </div>
 
-                                <Recommendation/>
+                                {/* <Recommendation/> */}
 
                     </div>
 
