@@ -28,7 +28,7 @@
 
 .MainPageback {
 }
-
+*/
 .circle1,
 .circle2 {
   position: absolute;
@@ -45,8 +45,9 @@
   left: -120px;
 }
 
+
 @media (max-width: 700px) {
   .Content-text {
     display: none;
   }
-} */
+} 
