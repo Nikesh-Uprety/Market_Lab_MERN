@@ -231,14 +231,6 @@ const Navbar = () => {
                         
             </div>    
 
-        {/* <ul className="navbar-nav ml-auto">
-            <li className="nav-item" data-toggle="tooltip" data-placement="top"
-                title="Create Your Course">
-
-                <NavLink to="/teacherhome" activeClassName="teacherActive"
-                    className="nav-link teachLink">Create an Course</NavLink>
-            </li>   
-        </ul> */}
         </>
     ); 
 
@@ -261,6 +253,28 @@ const Navbar = () => {
                             <img src="/images/masterlogo.png" className="logo" alt="MarketLab" />
                             <span className="navbar-brand-text"></span>
                         </Link>
+                        {isLogin ? (<div className="d-lg-none ms-auto me-3">
+                            <Link
+                                to='/home/all'
+                                className="btn custom-btn custom-border-btn"
+                                data-bs-toggle="offcanvas"
+                                
+                                role="button"
+                                aria-controls="offcanvasExample"
+                            >
+                                Courses
+                            </Link>
+                        </div>) : (<div className="d-lg-none ms-auto me-3">
+                            <a
+                                className="btn custom-btn custom-border-btn"
+                                data-bs-toggle="offcanvas"
+                                href="#offcanvasExample"
+                                role="button"
+                                aria-controls="offcanvasExample"
+                            >
+                                Member Login
+                            </a>
+                        </div>)}
 
                         <div className="d-lg-none ms-auto me-3">
                             <a
