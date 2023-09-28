@@ -40,7 +40,7 @@ class TeacherPage extends Component{
                 label: "Short Description",
                 rows: "4",
                 cols: "50",
-                placeholder: 'eg: Complete HTML5, CSS3, Basics of Js',
+                placeholder: '',
                 value: "",
                 valid:false,
                 validation: {
@@ -54,7 +54,7 @@ class TeacherPage extends Component{
                  label: "Long Description",
                  rows: "6",
                  cols: "50",
-                 placeholder: 'Entereg: In this course you will learn how to build professional website from scratch and how to make it responsive. Course Title',
+                 placeholder: 'About the course details and thing that the students will discover',
                  value: "",
                  valid:true,
 
@@ -73,12 +73,12 @@ class TeacherPage extends Component{
                     required: true,
                   
                 },
-                "Web Development":false,
-                "React" : false,
-                "ML": false,
-                "Web Designing": false,
-                "NodeJs":false,
-                "Photography":false,
+                "Stock Market":false,
+                "Forex Market" : false,
+                "Commodity Market": false,
+                "Stock Market": false,
+                "Forex Market":false,
+                "Commodity Market":false,
 
                 
             
@@ -499,19 +499,16 @@ class TeacherPage extends Component{
 
             <div className="Teacher-Courses-Buttons">
                
-            <button onClick={()=> this.categoryHandler("Web Development")} className={classWeb.join(' ')} > Development</button>
-                <button className={classWebDesign.join(' ')} onClick={()=> this.categoryHandler("Web Designing")}> Designing</button>
-                <button className={classReact.join(' ')} onClick={()=> this.categoryHandler("React")}> React</button>
-                <button className={classML.join(' ')} onClick={()=> this.categoryHandler("ML")}> ML</button>
-                <button className={classPhotography.join(' ')} onClick={()=> this.categoryHandler("Photography")}> Photography</button>
-                <button className={classNodeJs.join(' ')} onClick={()=> this.categoryHandler("NodeJs")}> Node JS</button>
+            <button onClick={()=> this.categoryHandler("Web Development")} className={classWeb.join(' ')} > Stock Market</button>
+                <button className={classWebDesign.join(' ')} onClick={()=> this.categoryHandler("Web Designing")}> Forex Market</button>
+                <button className={classReact.join(' ')} onClick={()=> this.categoryHandler("React")}> Commodity </button>
+                <button className={classML.join(' ')} onClick={()=> this.categoryHandler("ML")}> Technical</button>
+                <button className={classPhotography.join(' ')} onClick={()=> this.categoryHandler("Photography")}> Fundamental</button>
+                            <button className={classNodeJs.join(' ')} onClick={() => this.categoryHandler("NodeJs")}> Technical</button>
                 
             </div>
 
         </div>    
-
-
-           
 
    
             <TeacherTittle TitleDesc={"Description of your Course"}/>

@@ -424,9 +424,11 @@ const Sidebar = () => {
     var inputclasses = ["InputElement"];
 
     if (form.email.valid && form.email.touched) {
+        
 
         const index = inputclasses.indexOf('pop');
         if (index > -1) inputclasses.splice(index, 1);
+        
 
         inputclasses.push("Invalid");
 
@@ -435,6 +437,7 @@ const Sidebar = () => {
     else if (form.email.touched) {
         const index = inputclasses.indexOf('pop');
         if (index > -1) inputclasses.splice(index, 1);
+        
         inputclasses.push("Valid");
     }
 
@@ -453,7 +456,6 @@ const Sidebar = () => {
     // SignUp Functions
 
 
-
     return (
         <div
             className="offcanvas offcanvas-end"
@@ -465,6 +467,7 @@ const Sidebar = () => {
             <div className="offcanvas-header">
                 <h5 className="offcanvas-title" id="offcanvasExampleLabel">
                     {alertContent}
+                    
                     Member Login
                 </h5>
                 <button
@@ -532,6 +535,7 @@ const Sidebar = () => {
                                     onBlur={(event) => inputBlurHandler(event, 'password')}
 
                                 />
+                                
                             </div>
                             {/* <div className="form-check mb-4">
                                 <input

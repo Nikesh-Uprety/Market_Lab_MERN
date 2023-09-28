@@ -5,7 +5,7 @@ import CourseDesc from './CourseDesc';
 import CourseVideo from './CourseVideo';
 import axios from '../../ApiServices/axiosUrl';
 import VideoList from './VideoList';
-import Layout from '../../components/Layout/Layout';
+import Layout from '../../components/Layout/Layout_course';
 import parse from 'html-react-parser';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import AuthServices from '../../ApiServices/auth.service';

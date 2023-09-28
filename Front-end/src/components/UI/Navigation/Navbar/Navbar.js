@@ -79,14 +79,9 @@ const Navbar = () => {
             </div>
           </li>
 
-          {/* <li className="nav-item"><Link to="/index" className="nav-link" >Home</Link></li> */}
+          <li className="nav-item"><Link to="/index" className="nav-link" >Home</Link></li>
 
 
-          <li className="nav-item">
-            <a className="nav-link click-scroll" href="#section_2">
-              About
-            </a>
-          </li>
 
           <li className="nav-item">
             <Link to="/home/all" className="nav-link" >Courses</Link>
@@ -104,7 +99,7 @@ const Navbar = () => {
               Contact
             </a>
           </li>
-          <li className="nav-item dropdown">
+          {/* <li className="nav-item dropdown">
             <a
               className="nav-link dropdown-toggle"
               href="#"
@@ -122,7 +117,7 @@ const Navbar = () => {
               <li><Link to="/webinar" className="dropdown-item" >Upcoming Webinar</Link></li>
               <li><Link to="/premium" className="dropdown-item" >Premium courses </Link></li>
             </ul>
-          </li>
+          </li> */}
         </ul>
         <div className="d-none d-lg-block ms-lg-3">
           <a
@@ -148,31 +143,8 @@ const Navbar = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
 
         <ul className="navbar-nav ms-lg-auto">
+          <li className="nav-item"><Link to="/index" className="nav-link" >Home</Link></li>
 
-
-          <li className="nav-item dropdown" >
-            <a href={'/'} className="nav-link dropdown-toggle" id="navbarDropdown" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Category
-            </a>
-            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-
-              <NavLink className="dropdown-item" to='/home/all' activeClassName="active-categoryMenu" >All Courses</NavLink>
-              <NavLink className="dropdown-item" to='/home/Web Development' activeClassName="active-categoryMenu">Stock Market </NavLink>
-              <NavLink className="dropdown-item" to='/home/Web Designing' activeClassName="active-categoryMenu" >Forex Market </NavLink>
-              <NavLink className="dropdown-item" to='/home/React' activeClassName="active-categoryMenu">Commodity Market</NavLink>
-              <NavLink className="dropdown-item" to='/home/React' activeClassName="active-categoryMenu">Forex Market</NavLink>
-              <NavLink className="dropdown-item" to='/home/React' activeClassName="active-categoryMenu">Commodity Market</NavLink>
-
-
-            </div>
-          </li>
-
-          <li className="nav-item">
-            <a className="nav-link click-scroll" href="#section_2">
-              About
-            </a>
-          </li>
 
           <li className="nav-item">
             <Link to="/home/all" className="nav-link" >Courses</Link>
@@ -180,11 +152,7 @@ const Navbar = () => {
                                         Courses
                                     </a> */}
           </li>
-          <li className="nav-item">
-            <a className="nav-link click-scroll" href="#section_4">
-              Webinar
-            </a>
-          </li>
+          
           <li className="nav-item">
             <a className="nav-link click-scroll" href="#section_5">
               Contact
@@ -231,14 +199,14 @@ const Navbar = () => {
 
       </div>
 
-      {/* <ul className="navbar-nav ml-auto">
+       <ul className="navbar-nav ml-auto">
             <li className="nav-item" data-toggle="tooltip" data-placement="top"
                 title="Create Your Course">
 
                 <NavLink to="/teacherhome" activeClassName="teacherActive"
                     className="nav-link teachLink">Create an Course</NavLink>
             </li>   
-        </ul> */}
+        </ul> 
     </>
   );
 

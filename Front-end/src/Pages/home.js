@@ -4,13 +4,9 @@ import Sidebar from "../components/Layout/sidebar";
 
 import '../../src/App.css';
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle';
 
 const Home = () => {
    
-console.log('THis is home page')
     return (
         <div>
             <Navbar/>
@@ -37,7 +33,7 @@ console.log('THis is home page')
                                 >
                                     <span>Market Lab</span>
                                     <span className="cd-words-wrapper animation-fall">
-                                        <b className="is-visible">Trading</b>
+                                        <b className="is-visible"> Trading</b>
                                         <b>Institution</b>
                                     </span>
                                 </h1>

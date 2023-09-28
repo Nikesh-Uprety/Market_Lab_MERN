@@ -1,5 +1,6 @@
 import { Footor } from "../components/Layout/footor";
 import Navbar from "../components/Layout/navbar";
+import Sidebar from "../components/Layout/sidebar";
 
 const Webinar = () => {
     return (
@@ -7,6 +8,7 @@ const Webinar = () => {
             <div>
                 <Navbar />
                 <>
+                    <Sidebar />
                     
                     <section
                         className="hero-section hero-50 d-flex justify-content-center align-items-center"

@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/7a420a39-ae41-4ebc-b1c5-a140884c962a/resourceGroups/MarketLab_Backend/providers/Microsoft.Web/sites/Marketlabbackend",
+  "appService.deploySubpath": "."
+}

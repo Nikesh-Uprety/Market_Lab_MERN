@@ -10,7 +10,7 @@ class HomepageBanner extends Component{
         let Banner=null;
 
         if(this.props.img === 'all'){
-             text = ( <p className="Banner-text">Best place to <br/>learn new things</p> );
+             text = ( <p className="Banner-text">Be a Better Trader <br/>Welcome to Market Lab</p> );
              Banner=( <div className="BannerSection">
 
              <img className="BannerImage" 
@@ -23,7 +23,8 @@ class HomepageBanner extends Component{
             Banner=( <div className="BannerSection">
 
                      <img className="BannerImage" 
-                     src={"/images/" + this.props.img +".jpg"} alt="banner1"/>
+                    //  src={"/images/banner/4.jpg" + this.props.img +".jpg"} alt="banner1"/>
+                     src={"/images/banner/6.jpg"} alt="banner1"/>
 
                     </div>);
         }
@@ -34,8 +35,8 @@ class HomepageBanner extends Component{
                     
                     <div className="Teacher-banner">
             
-                        <p className="Teacher-text">Share Your Knowlegde 
-                        <br/>with the whole World!</p> 
+                        {/* <p className="Teacher-text">Share Your Knowlegde 
+                        <br/>with the whole World!</p>  */}
 
                        <Link to="teacher"> <button className="createCourse">
                             Create New Course</button></Link>

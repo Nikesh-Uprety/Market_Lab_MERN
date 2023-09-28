@@ -55,7 +55,7 @@ const Navbar = () => {
         setLogin(false)
         AuthServices.logout()
         console.log("logout called")
-        history.push('/')
+        history.push('/index')
     }
 
     let Logout = (
